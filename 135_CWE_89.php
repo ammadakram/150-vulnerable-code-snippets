@@ -10,17 +10,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM users WHERE username='" . $_GET['username'] . "' AND password='" . $_GET['password'] . "'";
+$name = $_GET['name'];
+$sql = "SELECT * FROM users WHERE name='".$name."'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo "Welcome " . $row["username"] . "!";
+        echo "Name: " . $row["name"]. " - Email: " . $row["email"]. "<br>";
     }
 } else {
-    echo "Invalid login credentials.";
+    echo "No results found";
 }
-
 $conn->close();
 ?>
 // Improper Input Validation

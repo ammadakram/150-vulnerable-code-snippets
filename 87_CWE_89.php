@@ -2,7 +2,7 @@
 $host = "localhost";
 $db   = "test_db";
 $user = "root";
-$pass = "password";
+$pass = "";
 
 $conn = new mysqli($host, $user, $pass, $db);
 
@@ -15,12 +15,12 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo "Welcome " . $row["username"] . "!";
+        echo "Welcome " . $row["username"];
     }
 } else {
-    echo "Invalid login credentials.";
+    echo "Login failed.";
 }
 
 $conn->close();
 ?>
-// Improper Input Validation
+// Improper Neutralization of Special Elements used in an SQL Command (“SQL Injection”)

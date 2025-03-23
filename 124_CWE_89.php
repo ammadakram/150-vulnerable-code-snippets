@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-$db   = "test_db";
+$db = "test_db";
 $user = "root";
-$pass = "password";
+$pass = "";
 
 $conn = new mysqli($host, $user, $pass, $db);
 
@@ -21,7 +21,7 @@ if ($result->num_rows > 0) {
         echo "Welcome " . $row["username"];
     }
 } else {
-    echo "Invalid username or password.";
+    echo "Login failed.";
 }
 
 $conn->close();

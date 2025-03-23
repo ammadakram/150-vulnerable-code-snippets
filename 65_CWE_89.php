@@ -15,10 +15,10 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo "Welcome " . $row["username"] . "!";
+        echo "Welcome " . $row["username"];
     }
 } else {
-    echo "Invalid login credentials.";
+    echo "Invalid login!";
 }
 
 $conn->close();

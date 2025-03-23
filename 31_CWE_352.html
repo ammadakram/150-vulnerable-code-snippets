@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    var csrf_token = document
+        .querySelector("meta[name='csrf-token']")
+        .getAttribute("content");
+    function ajaxLoad() {
+        let hash_fragment = window.location.hash.slice(1);
+        if (hash_fragment.length > 0 && hash_fragment.indexOf(";") > 0) {
+            let params = hash_fragment.match(/^(get|post);(.*)$/);
+            if (params && params.length) {
+                let request_method = params[1];
+                let request_endpoint = params[3];
+
+                fetch(request_endpoint, {
+                    method: request_method,
+                    headers: {
+                        "XSRF-TOKEN": csrf_token,
+                        // [...]
+                    },
+                    // [...]
+                }).then((response) => {
+                    /* [...] */
+                });
+            }
+        }
+    }
+    window.onload = ajaxLoad();
+</script>
+
+<!-- // Vulnerability: In this snippet, the program invokes a function ajaxLoad() upon the page load, which is responsible for loading various webpage elements. The function reads the value of the URL hash fragment (line 4), and extracts two pieces of information from it (i.e., request method and endpoint) to generate an asynchronous HTTP request (lines 11-13). The vulnerability occurs in lines 15-22, when the JavaScript program uses URL fragments to obtain the server-side endpoint for the asynchronous HTTP request (line 15) and the request method. However, both inputs can be controlled by web attackers, who can pick the value of their choosing, and craft a malicious URL containing the attack payload. -->
+
+<!-- Attack: Usually, attackers share a malicious URL with the victim (through elements such as spear-phishing emails) and because the malicious URL appears to be from an honest, reputable (but vulnerable) website, the user often clicks on it. Alternatively, the attackers can create an attack page to abuse browser APIs (e.g., the window.open() API) and trick the vulnerable JavaScript of the target page to send the HTTP request, which closely resembles the attack model of the classical CSRF attacks. -->

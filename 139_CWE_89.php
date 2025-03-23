@@ -15,12 +15,12 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo "Welcome " . $row["username"] . "!";
+        echo "Logged in as: " . $row["username"];
     }
 } else {
-    echo "Invalid login credentials.";
+    echo "Login failed.";
 }
 
 $conn->close();
 ?>
-// Improper Input Validation
+// Improper Neutralization of Special Elements used in an SQL Command (“SQL Injection”)

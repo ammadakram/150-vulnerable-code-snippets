@@ -1,0 +1,45 @@
+// home.html
+<p>Welcome, {{username}}!</p>
+<p>You currently have balance of <code>{{balance}}</code> in your account.</p>
+<p>Use the form below to transfer funds to another account.</p>
+<form action="/transfer" method="GET">
+	<div>
+		<label>Send funds to account: <input type="text" name="to" value=""></label>
+	</div>
+	<br>
+	<div>
+		<label>Amount: <input type="text" name="amount" value=""></label>
+	</div>
+	<br>
+	<div>
+		<input type="submit" value="Transfer">
+	</div>
+</form>
+
+// login.html
+<form action="/login" method="POST">
+	<p>Please use the following form to login.</p>
+	<div>
+		<label>Username: <input name="username" type="text" value="" autofocus></label>
+	</div>
+	<br>
+	<div>
+		<label>Password: <input name="password" type="password" value=""></label>
+	</div>
+	<br>
+	<div>
+		<input type="submit" value="Login">
+	</div>
+</form>
+
+// form.html
+<form id="form" action="http://localhost:3000/transfer" method="POST">
+  <input type="text" name="to" value="alice">
+  <input type="text" name="amount" value="9">
+  <input type="submit" value="transfer">
+</form>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('form').submit();
+  });
+</script>

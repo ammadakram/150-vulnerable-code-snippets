@@ -1,0 +1,19 @@
+<script>
+  window.addEventListener('message', writeMessage, false);
+  function writeMessage(event) {
+    document.getElementById("message").innerHTML = event.data;
+  }
+</script>
+
+<!-- // Result:
+// Vulnerable (01)
+//
+// Attack code / input:
+//
+// Source:
+// SnoopySecurity
+//
+// URL:
+// https://github.com/snoopysecurity/Vulnerable-Code-Snippets/blob/master/XSS/example1.html
+//
+// Vulnerabilty in line: -->

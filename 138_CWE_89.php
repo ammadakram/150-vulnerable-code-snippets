@@ -18,7 +18,7 @@ if ($result->num_rows > 0) {
         echo "Welcome " . $row["username"] . "!";
     }
 } else {
-    echo "Invalid login credentials.";
+    echo "Login failed.";
 }
 
 $conn->close();
